@@ -9,6 +9,7 @@ public class PitchDetector {
     private volatile double freq;
     private volatile double closestFreq;
     private volatile String closestFreqName;
+    private volatile char sign;
     private volatile static boolean run = true;
 
     public boolean started = false;
@@ -165,4 +166,7 @@ public class PitchDetector {
         System.out.println("STOPPED !");
     }
 
+    public char getChar() {
+        return (char)((int)(this.freq / 10));
+    }
 }

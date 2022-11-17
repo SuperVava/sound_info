@@ -3,6 +3,7 @@ import processing.core.PApplet;
 public class Main extends PApplet{
         Interface anInterface;
         TextEditor editor;
+        PitchDetector pd;
         public static void main(String... args){
             PApplet.main("Main");
         }
@@ -14,6 +15,7 @@ public class Main extends PApplet{
         public void setup(){
             this.anInterface = new Interface(this);
             this.editor = new TextEditor(this);
+            this.pd = new PitchDetector();
         }
 
         public void draw(){
@@ -23,21 +25,18 @@ public class Main extends PApplet{
 
         public void keyPressed(){
             editor.treatKey();
+            if (key == '²'){
+                test();
+            }
         }
 
     public void test() {
-        PitchDetector pd = new PitchDetector();
         pd.start();
-        boolean run = true; // Ceci sera ta condition pour continuer la boucle
-        //while(!pd.started){} // On attend que un son soit joué
-
-        while(run) {
-            double freq = pd.getFreq();
-            System.out.println("Fréquence : "+freq);
-        }
-
-        pd.stop();
-        System.exit(0);
+        double freq = 2*pd.getFreq();
+        char sign = pd.getChar();
+        System.out.print("Fréquence : "+freq);
+        System.out.println(" | Character : "+sign);
+        PitchDetector.stop();
     }
 
 }

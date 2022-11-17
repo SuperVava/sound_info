@@ -15,6 +15,7 @@ public class Interface {
         centerY = processing.height / 2;
         this.sourceCode = processing.createFont("Retro Gaming.ttf", 20, true);
         processing.textFont(sourceCode);
+        processing.smooth();
     }
 
     public void draw(){
